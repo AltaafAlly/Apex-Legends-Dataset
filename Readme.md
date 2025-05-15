@@ -30,12 +30,21 @@ Apex-Legends-Dataset/
 │   ├── Dataset_analysis.ipynb
 │   ├── Total Player Career Stats.csv
 │   ├── Career Stats/
+│   │   └── Player Career Stats PC.csv
 │   ├── Non Imputed Career Datasets/
 │   └── Player UIDs/
 │
 ├── Legend Stats Dataset/
 │   ├── Legend_Dataset_Analysis.ipynb
 │   └── Processed_Legend_Stats/
+│       ├── Legend Damage/
+│       │   └── [Legend]_damage.csv
+│       ├── Legend Kills/
+│       │   └── [Legend]_kills.csv
+│       ├── Legend Matches Played/
+│       │   └── [Legend]_games_played.csv
+│       └── Legend Wins/
+│           └── [Legend]_wins.csv
 │
 └── Player UIDs/
     ├── usernames_with_uids_for_PC.csv
@@ -63,7 +72,7 @@ Contains datasets and analysis related to overall player career statistics.
   Main CSV file with aggregated career stats for the top 500 players, including fields like `player_name`, `career_kills`, `career_wins`, and `career_revives`.
 
 - **Career Stats/**  
-  Contains platform-specific or batch-specific career stats CSVs (e.g., `Player Career Stats PC.csv`, `Player Career Stats PS4.csv`).
+  Contains platform-specific or batch-specific career stats CSVs (e.g., `Player Career Stats PC.csv`).
 
 - **Non Imputed Career Datasets/**  
   Contains raw or partially processed datasets before imputation or cleaning.
@@ -82,10 +91,11 @@ Contains datasets and analysis related to per-legend statistics.
   - Automated loading and validation of legend data files
   - Aggregation and visualization of legend performance metrics (damage, kills, matches played, wins)
   - Handling of missing or malformed data
+  - Analysis by legend categories (Assault, Skirmisher, Support, Controller, Recon)
 
 - **Processed_Legend_Stats/**  
   Contains subfolders for each legend statistic, each featuring the top 500 players:
-  - `Legend Damage/` — CSVs with per-legend damage data
+  - `Legend Damage/` — CSVs with per-legend damage data (e.g., `Alter_damage.csv`, `Ash_damage.csv`)
   - `Legend Kills/` — CSVs with per-legend kills data
   - `Legend Matches Played/` — CSVs with per-legend matches played
   - `Legend Wins/` — CSVs with per-legend wins
@@ -116,7 +126,7 @@ Handles player identification and mapping.
 
 3. **Legend Stats**  
    - Per-legend stats for the top 500 players in each category are stored in `Legend Stats Dataset/Processed_Legend_Stats/`.
-   - `Legend_Dataset_Analysis.ipynb` aggregates and analyzes legend performance.
+   - `Legend_Dataset_Analysis.ipynb` aggregates and analyzes legend performance, including by legend category.
 
 ---
 
@@ -152,7 +162,7 @@ pip install pandas numpy matplotlib seaborn requests
 
 - Place legend stat CSVs in the appropriate subfolders under `Legend Stats Dataset/Processed_Legend_Stats/`.
 - Open `Legend Stats Dataset/Legend_Dataset_Analysis.ipynb` in Jupyter.
-- Run the notebook to aggregate and analyze legend-specific performance.
+- Run the notebook to aggregate and analyze legend-specific performance, including by legend category.
 
 ---
 
