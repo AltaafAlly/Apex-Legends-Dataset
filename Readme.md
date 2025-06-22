@@ -10,47 +10,54 @@ This repository provides a comprehensive framework for collecting, processing, a
 
 ## Table of Contents
 
-- [Folder Structure](#folder-structure)
-- [Folder Descriptions](#folder-descriptions)
-- [Data Flow Overview](#data-flow-overview)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Notes](#notes)
-- [License](#license)
-- [Contact](#contact)
+- [Apex Legends Dataset Project](#apex-legends-dataset-project)
+  - [Table of Contents](#table-of-contents)
+  - [📁 Repository Structure](#-repository-structure)
+  - [Folder Descriptions](#folder-descriptions)
+    - [1. `Career_Stats_Dataset/`](#1-career_stats_dataset)
+    - [2. `Legend Stats Dataset/`](#2-legend-stats-dataset)
+    - [3. `Player UIDs/`](#3-player-uids)
+  - [Data Flow Overview](#data-flow-overview)
+  - [Getting Started](#getting-started)
+    - [Requirements](#requirements)
+  - [Usage](#usage)
+    - [1. Fetching Player Stats](#1-fetching-player-stats)
+    - [2. Analyzing Career Stats](#2-analyzing-career-stats)
+    - [3. Analyzing Legend Stats](#3-analyzing-legend-stats)
+  - [Notes](#notes)
+  - [License](#license)
+  - [Contact](#contact)
 
 ---
 
-## Folder Structure
+## 📁 Repository Structure
 
 ```
 Apex-Legends-Dataset/
 │
 ├── Career_Stats_Dataset/
 │   ├── Dataset_analysis.ipynb
+│   ├── Dataset_Individual.ipynb
 │   ├── Total Player Career Stats.csv
-│   ├── Career Stats/
-│   │   └── Player Career Stats PC.csv
-│   ├── Non Imputed Career Datasets/
-│   └── Player UIDs/
+│   ├── Imputated Datasets/
+│   │   ├── MICE_Imputed_PC.csv
+│   │   ├── MICE_Imputed_PS4.csv
+│   │   └── MICE_Imputed_Xbox.csv
+│   └── Non Imputed Career Datasets/
+│       ├── Career_Stats_PC.csv
+│       └── ...
 │
 ├── Legend Stats Dataset/
-│   ├── Legend_Dataset_Analysis.ipynb
+│   ├── Legend_Dataset_Analysis_Model.ipynb
+│   ├── Legend_Dataset_Analysis_of_Stats.ipynb
 │   └── Processed_Legend_Stats/
+│       ├── all_legends_combined.csv
 │       ├── Legend Damage/
-│       │   └── [Legend]_damage.csv
 │       ├── Legend Kills/
-│       │   └── [Legend]_kills.csv
 │       ├── Legend Matches Played/
-│       │   └── [Legend]_games_played.csv
 │       └── Legend Wins/
-│           └── [Legend]_wins.csv
 │
-└── Player UIDs/
-    ├── usernames_with_uids_for_PC.csv
-    ├── usernames_with_uids_for_PS4.csv
-    ├── usernames_with_uids_for_Xbox.csv
-    └── Player UIDs File/
+└── README.md
 ```
 
 ---
