@@ -139,6 +139,3 @@ This project is for educational and research purposes only. Apex Legends is a tr
 - **Extensibility:**  
   The structure supports adding new platforms, legends, or additional stat categories as needed.
 
-## Contact
-
-For questions or contributions, please open an issue or pull request on the repository.
