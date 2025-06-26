@@ -2,31 +2,9 @@
 
 This repository provides a comprehensive framework for collecting, processing, and analyzing player and legend statistics from Apex Legends. It is organized into several folders, each with a specific role in the data pipeline, from raw data acquisition to advanced analysis.
 
-**This dataset features the top 500 players for overall career stats, as well as the top 500 players per legend category. For each legend, the dataset includes the top 500 players by damage, kills, matches played, and wins.**
+**This dataset features the top 500 players for overall career stats which include career kills, career wins and career revives across Playstation, PC and Xbox, as well as the top 500 players per legend category. For each legend, the dataset includes the top 500 players by damage, kills, matches played, and wins.**
 
 **The data was captured in August 2024. Please note that Apex Legends is a live service game that is continuously updated and played by many players worldwide. As such, player rankings and statistics are subject to change over time.**
-
----
-
-## Table of Contents
-
-- [Apex Legends Dataset Project](#apex-legends-dataset-project)
-  - [Table of Contents](#table-of-contents)
-  - [📁 Repository Structure](#-repository-structure)
-  - [Folder Descriptions](#folder-descriptions)
-    - [1. `Career_Stats_Dataset/`](#1-career_stats_dataset)
-    - [2. `Legend Stats Dataset/`](#2-legend-stats-dataset)
-    - [3. `Player UIDs/`](#3-player-uids)
-  - [Data Flow Overview](#data-flow-overview)
-  - [Getting Started](#getting-started)
-    - [Requirements](#requirements)
-  - [Usage](#usage)
-    - [1. Fetching Player Stats](#1-fetching-player-stats)
-    - [2. Analyzing Career Stats](#2-analyzing-career-stats)
-    - [3. Analyzing Legend Stats](#3-analyzing-legend-stats)
-  - [Notes](#notes)
-  - [License](#license)
-  - [Contact](#contact)
 
 ---
 
@@ -43,154 +21,123 @@ Apex-Legends-Dataset/
 │   │   ├── MICE_Imputed_PC.csv
 │   │   ├── MICE_Imputed_PS4.csv
 │   │   └── MICE_Imputed_Xbox.csv
-│   └── Non Imputed Career Datasets/
-│       ├── Career_Stats_PC.csv
-│       └── ...
+│   ├── Non Imputed Career Datasets/
+│   │   ├── Career_Stats_PC.csv
+│   │   ├── Career_Stats_PS4.csv
+│   │   ├── Career_Stats_Xbox.csv
+│   │   └── ...
+│   └── Player UIDs/
 │
-├── Legend Stats Dataset/
-│   ├── Legend_Dataset_Analysis_Model.ipynb
-│   ├── Legend_Dataset_Analysis_of_Stats.ipynb
-│   └── Processed_Legend_Stats/
-│       ├── all_legends_combined.csv
-│       ├── Legend Damage/
-│       ├── Legend Kills/
-│       ├── Legend Matches Played/
-│       └── Legend Wins/
-│
-└── README.md
+└── Legend Stats Dataset/
+    ├── Clustering_Analysis.ipynb
+    ├── Legend_Dataset_Analysis_Model.ipynb
+    ├── Legend_Dataset_Analysis_of_Stats.ipynb
+    └── Processed_Legend_Stats/
+        ├── all_legends_combined.csv
+        ├── Legend Damage/
+        │   ├── <Legend>_damage.csv
+        │   └── ...
+        ├── Legend Kills/
+        │   ├── <Legend>_kills.csv
+        │   └── ...
+        ├── Legend Matches Played/
+        │   ├── <Legend>_games_played.csv
+        │   └── ...
+        └── Legend Wins/
+            ├── <Legend>_wins.csv
+            └── ...
 ```
 
 ---
 
-## Folder Descriptions
+## 📊 Main Notebooks
 
-### 1. `Career_Stats_Dataset/`
-
-Contains datasets and analysis related to overall player career statistics.
+### Career_Stats_Dataset
 
 - **Dataset_analysis.ipynb**  
-  Jupyter notebook for cleaning, exploring, and visualizing the career stats data. Includes:
-  - Data import and inspection
-  - Handling missing values and duplicates
-  - Exploratory Data Analysis (EDA) with summary statistics, histograms, boxplots, and correlation analysis
-  - Leaderboard and top player analysis
+  Exploratory data analysis and visualization of player career stats (kills, wins, revives). Includes data cleaning, summary statistics, and platform comparison.
 
-- **Total Player Career Stats.csv**  
-  Main CSV file with aggregated career stats for the top 500 players, including fields like `player_name`, `career_kills`, `career_wins`, and `career_revives`.
+- **Dataset_Individual.ipynb**  
+  Platform comparison, imputation, and regression/classification models for player stats. Includes visualizations and summary statistics for PC, Xbox, and PS4.
 
-- **Career Stats/**  
-  Contains platform-specific or batch-specific career stats CSVs (e.g., `Player Career Stats PC.csv`).
+### Legend Stats Dataset
 
-- **Non Imputed Career Datasets/**  
-  Contains raw or partially processed datasets before imputation or cleaning.
+- **Legend_Dataset_Analysis_of_Stats.ipynb**  
+  In-depth analysis of legend-specific stats, including damage, kills, matches played, and wins. Includes data cleaning, aggregation, and visualization.
 
-- **Player UIDs/**  
-  Contains scripts and files for mapping player usernames to unique IDs.
+- **Legend_Dataset_Analysis_Model.ipynb**  
+  Machine learning model to predict a legend's role (Assault, Support, etc.) based on game performance (kills, damage).
+
+- **Clustering_Analysis.ipynb**  
+  Clustering analysis of legends based on performance metrics (kills per match, kills per win, damage per match). Includes K-Means, GMM, and Hierarchical clustering, with visualizations and cluster composition analysis.
 
 ---
 
-### 2. `Legend Stats Dataset/`
+## 🏷️ Data Sources
 
-Contains datasets and analysis related to per-legend statistics.
+- **Career Stats:**  
+  CSVs with player career stats (kills, wins, revives) for PC, Xbox, and PS4, both imputed and non-imputed.
 
-- **Legend_Dataset_Analysis.ipynb**  
-  Jupyter notebook for processing and analyzing legend-specific stats. Features:
-  - Automated loading and validation of legend data files
-  - Aggregation and visualization of legend performance metrics (damage, kills, matches played, wins)
-  - Handling of missing or malformed data
-  - Analysis by legend categories (Assault, Skirmisher, Support, Controller, Recon)
-
-- **Processed_Legend_Stats/**  
-  Contains subfolders for each legend statistic, each featuring the top 500 players:
-  - `Legend Damage/` — CSVs with per-legend damage data (e.g., `Alter_damage.csv`, `Ash_damage.csv`)
-  - `Legend Kills/` — CSVs with per-legend kills data
-  - `Legend Matches Played/` — CSVs with per-legend matches played
-  - `Legend Wins/` — CSVs with per-legend wins
+- **Legend Stats:**  
+  CSVs for each legend and stat (damage, kills, matches played, wins), processed and stored in subfolders.
 
 ---
 
-### 3. `Player UIDs/`
+## ⚙️ How to Use
 
-Handles player identification and mapping.
-
-- **usernames_with_uids_for_PC.csv**, **usernames_with_uids_for_PS4.csv**, **usernames_with_uids_for_Xbox.csv**  
-  CSV files mapping player usernames to their unique IDs for each platform.
-
-- **Player UIDs File/**  
-  Contains scripts for converting and anonymizing player identifiers (e.g., replacing usernames with `User_n` labels).
+1. **Clone the repository** and open in VS Code or Jupyter.
+2. **Install dependencies:**  
+   - pandas, numpy, matplotlib, seaborn, scikit-learn, xgboost (for regression), scipy
+3. **Run the notebooks** in order for data cleaning, analysis, and modeling.
+4. **Modify file paths** if your directory structure differs.
 
 ---
 
-## Data Flow Overview
+## 🧠 Example Analyses
 
-1. **Player UIDs**  
-   - Usernames are mapped to UIDs using the CSVs in `Player UIDs/`.
-   - Stats for each UID are fetched and written to CSV using custom scripts (not included here for security reasons).
+- **Predicting Legend Role:**  
+  Given a game's performance (e.g., `Kills=X`, `Damage=Y`), the model predicts which role (Assault, Support, etc.) the player was likely playing.
 
-2. **Career Stats**  
-   - Raw and processed career stats for the top 500 players are stored in `Career_Stats_Dataset/`.
-   - `Dataset_analysis.ipynb` performs cleaning, EDA, and visualization.
+- **Clustering Legends:**  
+  Legends are clustered based on performance metrics to find groups with similar playstyles or effectiveness.
 
-3. **Legend Stats**  
-   - Per-legend stats for the top 500 players in each category are stored in `Legend Stats Dataset/Processed_Legend_Stats/`.
-   - `Legend_Dataset_Analysis.ipynb` aggregates and analyzes legend performance, including by legend category.
+- **Platform Comparison:**  
+  Compare stats across PC, Xbox, and PS4 to analyze differences in player performance.
 
 ---
 
-## Getting Started
+## 📈 Features
 
-### Requirements
-
-- Python 3.7+
-- Jupyter Notebook
-- pandas, numpy, matplotlib, seaborn, requests
-
-Install dependencies with:
-
-```sh
-pip install pandas numpy matplotlib seaborn requests
-```
+- Data cleaning and imputation for missing values
+- Exploratory data analysis and visualization
+- Platform comparison (PC, Xbox, PS4)
+- Machine learning models for:
+  - Predicting wins from kills (regression)
+  - Predicting legend role from game stats (classification)
+- Clustering analysis of legends
+- Legend-specific performance analysis
 
 ---
 
-## Usage
+## 📄 License
 
-### 1. Fetching Player Stats
-
-- Place your username-UID mapping CSVs in `Player UIDs/`.
-- Use your own scripts to fetch and save player stats from the API (not included in this repository).
-
-### 2. Analyzing Career Stats
-
-- Open `Career_Stats_Dataset/Dataset_analysis.ipynb` in Jupyter.
-- Run the notebook to clean, explore, and visualize the career stats data.
-
-### 3. Analyzing Legend Stats
-
-- Place legend stat CSVs in the appropriate subfolders under `Legend Stats Dataset/Processed_Legend_Stats/`.
-- Open `Legend Stats Dataset/Legend_Dataset_Analysis.ipynb` in Jupyter.
-- Run the notebook to aggregate and analyze legend-specific performance, including by legend category.
+This project is for educational and research purposes only. Apex Legends is a trademark of Electronic Arts Inc. Please respect the terms of service of any third-party APIs used.
 
 ---
 
+## 🙏 Acknowledgements
+
+- Apex Legends community for data inspiration
+- scikit-learn, pandas, matplotlib, seaborn for open-source tools
+
+---
 ## Notes
-
-- **Data Privacy:**  
-  Usernames can be anonymized using scripts in `Player UIDs/Player UIDs File/Conversion.py`.
 
 - **API Usage:**  
   The [Mozambique API](https://apexlegendsapi.com/) has rate limits. Scripts for API access are not included here for security reasons.
 
 - **Extensibility:**  
   The structure supports adding new platforms, legends, or additional stat categories as needed.
-
----
-
-## License
-
-This project is for research and educational purposes. Please respect the terms of service of any third-party APIs used.
-
----
 
 ## Contact
 
