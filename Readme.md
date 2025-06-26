@@ -128,6 +128,7 @@ This project is for educational and research purposes only. Apex Legends is a tr
 ## 🙏 Acknowledgements
 
 - Apex Legends community for data inspiration
+- The [Mozambique API](https://apexlegendsapi.com/) for providing a free to use API for player and legend stats
 - scikit-learn, pandas, matplotlib, seaborn for open-source tools
 
 ---
